@@ -228,7 +228,7 @@ if (!function_exists('twentyeleven_header_style')) :
     ?>
     <style type="text/css">
     <?php
-    // Has the text been hidden?
+// Has the text been hidden?
     if ('blank' == $text_color) :
       ?>
         #site-title,
@@ -238,7 +238,7 @@ if (!function_exists('twentyeleven_header_style')) :
           clip: rect(1px, 1px, 1px, 1px);
         }
       <?php
-    // If the user has set a custom color for the text use that
+// If the user has set a custom color for the text use that
     else :
       ?>
         #site-title a,
@@ -284,15 +284,15 @@ if (!function_exists('twentyeleven_admin_header_style')) :
         line-height: 23px;
         padding: 0 0 3em;
       }
-    <?php
-    // If the user has set a custom color for the text use that
-    if (get_header_textcolor() != HEADER_TEXTCOLOR) :
-      ?>
+      <?php
+      // If the user has set a custom color for the text use that
+      if (get_header_textcolor() != HEADER_TEXTCOLOR) :
+        ?>
         #site-title a,
         #site-description {
           color: #<?php echo get_header_textcolor(); ?>;
         }
-    <?php endif; ?>
+      <?php endif; ?>
       #headimg img {
         max-width: 1000px;
         height: auto;
@@ -326,11 +326,11 @@ if (!function_exists('twentyeleven_admin_header_image')) :
       ?>
       <h1><a id="name"<?php echo $style; ?> onclick="return false;" href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a></h1>
       <div id="desc"<?php echo $style; ?>><?php bloginfo('description'); ?></div>
-    <?php if ($image) : ?>
+      <?php if ($image) : ?>
         <img src="<?php echo esc_url($image); ?>" alt="" />
-    <?php endif; ?>
+      <?php endif; ?>
     </div>
-  <?php
+    <?php
   }
 
 endif; // twentyeleven_admin_header_image
@@ -467,7 +467,7 @@ if (!function_exists('twentyeleven_content_nav')) :
         <div class="nav-previous"><?php next_posts_link(__('<span class="meta-nav">&larr;</span> Older posts', 'twentyeleven')); ?></div>
         <div class="nav-next"><?php previous_posts_link(__('Newer posts <span class="meta-nav">&rarr;</span>', 'twentyeleven')); ?></div>
       </nav><!-- #nav-above -->
-    <?php
+      <?php
     endif;
   }
 
@@ -539,10 +539,10 @@ if (!function_exists('twentyeleven_comment')) :
         ?>
         <li class="post pingback">
           <p><?php _e('Pingback:', 'twentyeleven'); ?> <?php comment_author_link(); ?><?php edit_comment_link(__('Edit', 'twentyeleven'), '<span class="edit-link">', '</span>'); ?></p>
-                <?php
-                break;
-              default :
-                ?>
+          <?php
+          break;
+        default :
+          ?>
         <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
           <article id="comment-<?php comment_ID(); ?>" class="comment">
             <footer class="comment-meta">
@@ -561,20 +561,20 @@ if (!function_exists('twentyeleven_comment')) :
                 );
                 ?>
 
-        <?php edit_comment_link(__('Edit', 'twentyeleven'), '<span class="edit-link">', '</span>'); ?>
+                <?php edit_comment_link(__('Edit', 'twentyeleven'), '<span class="edit-link">', '</span>'); ?>
               </div><!-- .comment-author .vcard -->
 
-          <?php if ($comment->comment_approved == '0') : ?>
+              <?php if ($comment->comment_approved == '0') : ?>
                 <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.', 'twentyeleven'); ?></em>
                 <br />
-          <?php endif; ?>
+              <?php endif; ?>
 
             </footer>
 
             <div class="comment-content"><?php comment_text(); ?></div>
 
             <div class="reply">
-          <?php comment_reply_link(array_merge($args, array('reply_text' => __('Reply <span>&darr;</span>', 'twentyeleven'), 'depth' => $depth, 'max_depth' => $args['max_depth']))); ?>
+              <?php comment_reply_link(array_merge($args, array('reply_text' => __('Reply <span>&darr;</span>', 'twentyeleven'), 'depth' => $depth, 'max_depth' => $args['max_depth']))); ?>
             </div><!-- .reply -->
           </article><!-- #comment-## -->
 
@@ -670,9 +670,6 @@ if (!function_exists('twentyeleven_comment')) :
     register_post_type('produkt', $args);
   }
 
-  
-  
-  
   function init_order_table() {
     $version = 6;
     global $wpdb;
@@ -699,4 +696,16 @@ if (!function_exists('twentyeleven_comment')) :
       update_option("lommakottDbVersion", $version);
     }
   }
+
   //add_action('init', 'init_order_table');
+
+
+  function lomma_load_scripts() {
+    wp_deregister_script('jquery');
+    wp_register_script('jquery', 'http://code.jquery.com/jquery-latest.min.js');
+    wp_enqueue_script('jquery');
+  }
+
+  add_action('wp_enqueue_scripts', 'lomma_load_scripts');
+
+  

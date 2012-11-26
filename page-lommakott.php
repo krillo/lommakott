@@ -17,7 +17,7 @@ get_header();
  /******************************
   * Events
   ******************************/  
-  $('.count').mouseup(function() {
+    $('.count').change(function() {
     var self = jQuery(this);
     count = self.val();
     id = self.attr('id');
@@ -85,7 +85,7 @@ get_header();
 
 <div id="primary">
   <div id="content" role="main">
-        <form id="buy" action="/tack" method="post">
+        <form id="buy" action="/kvitto" method="post">
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
         <h1 class="entry-title"><?php the_title(); ?></h1>      
         <?php  the_content(); ?>   
@@ -122,7 +122,7 @@ get_header();
                   <option>10</option>
                 </select></td>
               <td id="sum-<?php the_ID(); ?>" class="article-sum">0</td>
-              <td><?php the_title(); ?></td>
+              <td><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></td>
               <td>(<span id="price-<?php the_ID(); ?>"><?php the_field('price'); ?></span> kr)</td>
             </tr>
             <?php

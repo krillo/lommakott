@@ -36,7 +36,7 @@ $orderid = $wpdb->insert_id;
 
 
 //send mail
-$to = "krillo@gmail.com";
+$to = "bestall@lommakott.se";
 $from = "order@lommakkott.se";
 
 $message = "Order nr: $orderid<br/>";

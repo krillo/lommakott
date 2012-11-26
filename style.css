@@ -663,7 +663,7 @@ a:hover {
 	z-index: 1;
 }
 #branding .only-search #s {
-	background-color: #666;
+	background-color: #C5D1D7;
 	border-color: #000;
 	color: #222;
 }
@@ -2712,3 +2712,4 @@ label .invalid{float:right;display: inline; color:red;margin-left:5px;}
 #kvitto{margin-bottom: 30px;}
 #kvitto h2{ color: #444;font-size: 30px;font-weight: bold;line-height: 40px;}
 select{font-size: 17px;height: 27px;}
+.entry-content{border-bottom: solid 2px #999;}

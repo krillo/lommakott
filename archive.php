@@ -17,6 +17,21 @@ get_header(); ?>
 		<section id="primary">
 			<div id="content" role="main">
 
+        
+        <?php    
+      $args = array( 'post_type' => 'produkt', 'posts_per_page' => 10 );
+      $loop = new WP_Query( $args );
+      while ( $loop->have_posts() ) : $loop->the_post();
+      the_title();
+      echo '<div class="entry-content">';
+        the_content();
+        echo '</div>';
+      endwhile;
+?>
+
+        
+        
+        
 			<?php if ( have_posts() ) : ?>
 
 				<header class="page-header">
