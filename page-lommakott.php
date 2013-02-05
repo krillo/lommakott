@@ -17,12 +17,12 @@ get_header();
  /******************************
   * Events
   ******************************/  
-  $('.count').mouseup(function() {
+    $('.count').change(function() {
     var self = jQuery(this);
     count = self.val();
     id = self.attr('id');
     price = $('#price-'+id).html();
-    $('#sum-'+id).html(price*count);
+    $('#sum-'+id).html(price*count*0.1);
       
       
       
@@ -85,7 +85,7 @@ get_header();
 
 <div id="primary">
   <div id="content" role="main">
-        <form id="buy" action="/tack" method="post">
+        <form id="buy" action="/kvitto" method="post">
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
         <h1 class="entry-title"><?php the_title(); ?></h1>      
         <?php  the_content(); ?>   
@@ -94,7 +94,7 @@ get_header();
     <table border="1" id="product-table">
       <thead>
         <tr>
-          <th>Antal</th>
+          <th>Hekto</th>
           <th>Summa</th>
           <th>Produkt</th>
           <th>Pris per kilo</th>
@@ -120,9 +120,20 @@ get_header();
                   <option>8</option>
                   <option>9</option>
                   <option>10</option>
+                  <option>12</option>
+                  <option>13</option>
+                  <option>20</option>
+                  <option>30</option>
+                  <option>40</option>
+                  <option>50</option>
+                  <option>60</option>
+                  <option>70</option>
+                  <option>80</option>
+                  <option>90</option>
+                  <option>100</option>
                 </select></td>
               <td id="sum-<?php the_ID(); ?>" class="article-sum">0</td>
-              <td><?php the_title(); ?></td>
+              <td><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></td>
               <td>(<span id="price-<?php the_ID(); ?>"><?php the_field('price'); ?></span> kr)</td>
             </tr>
             <?php
