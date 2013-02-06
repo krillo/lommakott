@@ -709,3 +709,5 @@ if (!function_exists('twentyeleven_comment')) :
   add_action('wp_enqueue_scripts', 'lomma_load_scripts');
 
   
+  //add the reptilo utils 
+  include_once 'reptilo_utils.php'; 

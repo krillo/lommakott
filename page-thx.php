@@ -20,9 +20,10 @@ foreach ($_POST as $key => $amount) {
       $ID = substr($key, 6);
       $name = get_field('name', $ID);
       $price = get_field('price', $ID);
-      $sum = $price * $amount;
+      //$price = $price  * 0.1;
+      $sum = $price* 0.1 * $amount;   //convert from kg to hg
       $order->total += $sum;
-      $article[$name] = array($amount . " st", $price . " kr/st", $sum . " kr");
+      $article[$name] = array($amount . " hekto", $price . " kr/kilo", $sum . " kr");
     }
   }
 }
@@ -36,35 +37,29 @@ $orderid = $wpdb->insert_id;
 
 
 //send mail
-$to = "bestall@lommakott.se";
-$from = "order@lommakkott.se";
+$to = "krillo@gmail.com";
+//$to = "bestall@lommakott.se";
+$to_name = "bestall";
+$from = "order@lommakott.se";
+$from_name = "order";
+
+$title = "Order nr: $orderid";
 
 $message = "Order nr: $orderid<br/>";
 $message .= date("Y-m-d H:i:s") . "<br/><br/>";
 foreach ($article as $key => $value) {
   $message .= $value[0] . " " . $value[1] . " " . $value[2] . " " . $key . "<br/>";
-  ;
 }
 $message .= "--------------------<br/>";
 $message .= "Totalt: " . $order->total . " kr <br/><br/>";
-
 $message .= "$order->fname  $order->lname <br/>";
 $message .= "$order->street<br/>";
 $message .= "$order->zip  $order->city <br/><br/>";
 $message .= "Telefon: $order->phone<br/>";
 $message .= "Email: $order->email<br/>";
 
-
-$headers = 'To: ' . $to . ' <' . $to . '>' . "\r\n";
-$headers .= 'From: ' . $from . ' <' . $from . '>' . "\r\n";
-$headers .= 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=UTF-8' . '\r\n';
-
-
-$success = mail($to, "Order nr: $orderid", $message, $headers);
-if (!$success) {
-  
-}
+rep_saveToLogFile(rep_getLogFileName(), "Order: \r\n" . $message, 'INFO');
+rep_sendMail($title, $message, $to, $to_name, $from, $from_name);
 ?>
 
 <?php get_header(); ?>
